@@ -1,4 +1,4 @@
-package ma.pfe.repositories;
+/*package ma.pfe.repositories;
 
 import ma.pfe.entities.StudentEntity;
 import org.slf4j.Logger;
@@ -35,3 +35,4 @@ public class StudentRepository2 implements IStudentRepository {
         return new ArrayList<>();
     }
 }
+*/

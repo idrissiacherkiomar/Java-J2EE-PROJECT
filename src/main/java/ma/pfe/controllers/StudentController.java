@@ -21,19 +21,19 @@ public class StudentController {
     }
 
     @PostMapping
-    public long save(StudentDTO e) {
+    public long save(@RequestBody StudentDTO e) {
         LOGGER.debug("Start --> save ");
         return service.save(e);
     }
 
     @PutMapping
-    public boolean update(StudentDTO e) {
+    public long update(@RequestBody StudentDTO e) {
         LOGGER.debug("Start --> update ");
         return service.update(e);
     }
 
-    @DeleteMapping
-    public boolean deleteById(long id) {
+    @DeleteMapping("/{ids}")
+    public boolean deleteById(@PathVariable("ids") long id) {
         LOGGER.debug("Start --> deleteById ");
         return service.deleteById(id);
     }

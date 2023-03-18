@@ -1,4 +1,4 @@
-package ma.pfe.repositories;
+/*package ma.pfe.repositories;
 
 import ma.pfe.entities.StudentEntity;
 import org.slf4j.Logger;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository(value="repository1")
+@Repository(value="repository1_OLD")
 public class StudentRepository implements IStudentRepository {
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentRepository.class);
     @Override
@@ -34,3 +34,4 @@ public class StudentRepository implements IStudentRepository {
         return new ArrayList<>();
     }
 }
+*/

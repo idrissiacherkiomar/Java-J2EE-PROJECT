@@ -2,7 +2,6 @@ package ma.pfe.mappers;
 
 import ma.pfe.dtos.StudentDTO;
 import ma.pfe.entities.StudentEntity;
-import ma.pfe.repositories.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -12,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Component(value="mapper1")
 public class StudentMapper {
-    private static final Logger LOGGER = LoggerFactory.getLogger(StudentRepository.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(StudentMapper.class);
     public StudentEntity convetDTOtoENTITY(StudentDTO dto){
         StudentEntity entity = new StudentEntity();
         entity.setId(dto.getId());

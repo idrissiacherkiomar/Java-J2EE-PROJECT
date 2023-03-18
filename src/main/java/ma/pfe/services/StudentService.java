@@ -17,7 +17,7 @@ public class StudentService implements  IStudentService{
     private IStudentRepository repository;
     private StudentMapper mapper;
 
-    public StudentService(@Qualifier("repository2") IStudentRepository repository,@Qualifier("mapper1") StudentMapper mapper) {
+    public StudentService(@Qualifier("repository1") IStudentRepository repository,@Qualifier("mapper1") StudentMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
@@ -25,24 +25,27 @@ public class StudentService implements  IStudentService{
     @Override
     public long save(StudentDTO e) {
         LOGGER.debug("Start --> save ");
-        return repository.save(mapper.convetDTOtoENTITY(e));
+        StudentDTO res = mapper.convetENTITYtoDTO(repository.save(mapper.convetDTOtoENTITY(e)));
+        return res.getId();
     }
 
     @Override
-    public boolean update(StudentDTO e) {
+    public long update(StudentDTO e) {
         LOGGER.debug("Start --> update ");
-        return repository.update(mapper.convetDTOtoENTITY(e));
+        StudentDTO res = mapper.convetENTITYtoDTO(repository.save(mapper.convetDTOtoENTITY(e)));
+        return res.getId();
     }
 
     @Override
     public boolean deleteById(long id) {
         LOGGER.debug("Start --> deleteById ");
-        return repository.deleteById(id);
+        repository.deleteById(id);
+        return true;
     }
 
     @Override
     public List<StudentDTO> selectAll() {
         LOGGER.debug("Start --> selectAll StudentService1");
-        return mapper.convetENTITYStoDTOS(repository.selectAll());
+        return mapper.convetENTITYStoDTOS(repository.findAll());
     }
 }
