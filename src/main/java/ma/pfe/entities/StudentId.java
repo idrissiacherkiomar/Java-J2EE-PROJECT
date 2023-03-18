@@ -6,6 +6,7 @@ import java.util.Objects;
 
 @Embeddable
 public class StudentId implements Serializable{
+
     private Long id;
     private String code;
 

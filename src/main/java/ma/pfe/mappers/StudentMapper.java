@@ -14,13 +14,13 @@ public class StudentMapper {
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentMapper.class);
     public StudentEntity convetDTOtoENTITY(StudentDTO dto){
         StudentEntity entity = new StudentEntity();
-        entity.setId(dto.getId());
+        //entity.setId(dto.getId());
         entity.setName(dto.getName());
         return entity;
     }
     public StudentDTO convetENTITYtoDTO(StudentEntity entity){
         StudentDTO dto = new StudentDTO();
-        dto.setId(entity.getId());
+        //dto.setId(entity.StudentId);
         dto.setName(entity.getName());
         return dto;
     }
