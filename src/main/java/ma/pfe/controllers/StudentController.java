@@ -1,6 +1,7 @@
 package ma.pfe.controllers;
 
 import ma.pfe.dtos.StudentDTO;
+import ma.pfe.dtos.StudentIdDTO;
 import ma.pfe.services.IStudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,34 +15,42 @@ import java.util.List;
 public class StudentController {
     private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
 
-    private IStudentService service;
+    private IStudentService studentService;
 
     public StudentController(@Qualifier("service1") IStudentService service){
-        this.service = service;
+        this.studentService = service;
     }
 
     @PostMapping
-    public long save(@RequestBody StudentDTO e) {
-        LOGGER.debug("Start --> save ");
-        return service.save(e);
+    public long save(@RequestBody StudentDTO stDTO) {
+        LOGGER.debug("Start --> save in StudentController");
+        LOGGER.debug(stDTO.toString());
+        return studentService.save(stDTO);
     }
 
     @PutMapping
-    public long update(@RequestBody StudentDTO e) {
-        LOGGER.debug("Start --> update ");
-        return service.update(e);
+    public long update(@RequestBody StudentDTO stDTO) {
+        LOGGER.debug("Start --> update in StudentController");
+        return studentService.update(stDTO);
     }
 
-    @DeleteMapping("/{ids}")
-    public boolean deleteById(@PathVariable("ids") long id) {
-        LOGGER.debug("Start --> deleteById ");
-        return service.deleteById(id);
+    @DeleteMapping("/{id}/{code}")
+    public boolean deleteById(@PathVariable("id") long id,@PathVariable("code") String code) {
+        LOGGER.debug("Start --> method select by id = {} and code = {} in StudentController",id,code);
+        StudentIdDTO idStudent =new StudentIdDTO(id,code);
+        return studentService.deleteById(idStudent);
     }
 
     @GetMapping
     public List<StudentDTO> selectAll() {
-        LOGGER.debug("Start --> selectAll StudentController1");
-        return service.selectAll();
+        LOGGER.debug("Start --> selectAll in StudentController");
+        return studentService.selectAll();
     }
 
+    @GetMapping("/{id}/{code}")
+    public StudentDTO selectById(@PathVariable("id") long id,@PathVariable("code") String code) {
+        LOGGER.debug("Start --> method select by id {} , code {} in StudentController",id,code);
+        StudentIdDTO idStudent = new StudentIdDTO(id,code);
+        return studentService.selectById(idStudent);
+    }
 }

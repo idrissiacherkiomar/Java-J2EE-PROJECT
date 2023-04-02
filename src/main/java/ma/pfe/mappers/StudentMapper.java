@@ -1,37 +1,32 @@
 package ma.pfe.mappers;
-
+import ma.pfe.dtos.CoursDTO;
 import ma.pfe.dtos.StudentDTO;
+import ma.pfe.dtos.StudentIdDTO;
+import ma.pfe.entities.CoursEntity;
 import ma.pfe.entities.StudentEntity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import ma.pfe.entities.StudentId;
+import org.mapstruct.Mapper;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-@Component(value="mapper1")
-public class StudentMapper {
-    private static final Logger LOGGER = LoggerFactory.getLogger(StudentMapper.class);
-    public StudentEntity convetDTOtoENTITY(StudentDTO dto){
-        StudentEntity entity = new StudentEntity();
-        //entity.setId(dto.getId());
-        entity.setName(dto.getName());
-        return entity;
-    }
-    public StudentDTO convetENTITYtoDTO(StudentEntity entity){
-        StudentDTO dto = new StudentDTO();
-        //dto.setId(entity.StudentId);
-        dto.setName(entity.getName());
-        return dto;
-    }
+@Mapper
+public interface StudentMapper {
 
-    public List<StudentEntity> convetDTOStoENTITYS(List<StudentDTO> dtos){
-        return dtos.stream().map(dto->convetDTOtoENTITY(dto)).collect(Collectors.toList());
-    }
-    public  List<StudentDTO> convetENTITYStoDTOS(List<StudentEntity> entitys){
-        LOGGER.debug("Start --> convetENTITYStoDTOS StudentMapper1");
-        return entitys.stream().map(entity->convetENTITYtoDTO(entity)).collect(Collectors.toList());
-    }
+    //Student Class
+    public StudentEntity convetDTOtoENTITY(StudentDTO dto);
+    public StudentDTO convetENTITYtoDTO(StudentEntity entity);
+    public List<StudentEntity> convetDTOStoENTITYS(List<StudentDTO> dtos);
+    public  List<StudentDTO> convetENTITYStoDTOS(List<StudentEntity> entitys);
 
 
+    //StudentId Class
+    public StudentId studentIdDTOToStudentId(StudentIdDTO studentIdDTO);
+    public StudentIdDTO studentIdToStudentIdDTO(StudentId studentId);
+
+
+    //Cours Class
+    public CoursEntity coursDTOToCoursEntity(CoursDTO coursDTO);
+    public List<CoursEntity> coursDTOListToCoursEntityList(List<CoursDTO> list);
+    public CoursDTO coursEntityToCoursDTO(CoursEntity coursEntity);
+    public List<CoursDTO> coursEntityListToCoursDTOList(List<CoursEntity> list);
 }

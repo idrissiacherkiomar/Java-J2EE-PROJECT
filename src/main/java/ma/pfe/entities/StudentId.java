@@ -15,6 +15,14 @@ public class StudentId implements Serializable{
         this.code = code;
     }
 
+    @Override
+    public String toString() {
+        return "StudentId{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                '}';
+    }
+
     public StudentId() {
     }
 
