@@ -29,6 +29,8 @@ public class StudentEntity {
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<CoursEntity> courses;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private GroupEntity group;
     //@Id
     //@Column(name = "id_student")
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +43,7 @@ public class StudentEntity {
     public StudentId getStudentId() { return studentId; }
     public Adresse getAdresse() { return adresse; }
     public List<CoursEntity> getCourses() { return courses; }
-
+    public GroupEntity getGroup() { return group; }
 
     //Setters
     public void setName(String name) { this.name = name; }
@@ -50,6 +52,7 @@ public class StudentEntity {
     public void setCourses(List<CoursEntity> courses) {
         this.courses = courses;
     }
+    public void setGroup(GroupEntity group) { this.group = group; }
 
     @Override
     public String toString() {
@@ -58,6 +61,7 @@ public class StudentEntity {
                 ", adresse=" + adresse +
                 ", name='" + name + '\'' +
                 ", courses=" + courses +
+                ", group=" + group +
                 '}';
     }
 }
